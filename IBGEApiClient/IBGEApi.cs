@@ -24,7 +24,7 @@ namespace IBGEApiClient {
         public async Task<List<Estado>> GetEstadosAsync() {
             if (_estados == null) {
                 _estados = new List<Estado>();
-                var result = await _api.GetAssync<List<Estado>>($"/estados");
+                var result = await _api.GetAsync<List<Estado>>($"/estados");
 
                 if (result.result != null) {
                     _estados = result.result;
@@ -40,7 +40,7 @@ namespace IBGEApiClient {
             if (_estadoCidade.ContainsKey(uf)) {
                 cidades = _estadoCidade[uf];
             } else {
-                var result = await _api.GetAssync<List<Municipio>>($"/estados/{uf}/municipios");
+                var result = await _api.GetAsync<List<Municipio>>($"/estados/{uf}/municipios");
 
                 if (result.result != null) {
                     cidades = result.result;
@@ -57,7 +57,7 @@ namespace IBGEApiClient {
             if (_cidadeeDistrito.ContainsKey(municipio)) {
                 cidades = _cidadeeDistrito[municipio];
             } else {
-                var result = await _api.GetAssync<List<Distrito>>($"/municipios/{municipio}/distritos");
+                var result = await _api.GetAsync<List<Distrito>>($"/municipios/{municipio}/distritos");
 
                 if (result.result != null) {
                     cidades = result.result;
@@ -70,7 +70,7 @@ namespace IBGEApiClient {
 
         public async Task<Distrito> DistritoPorIdentificadorAsync(string id) {
             var distrito = new Distrito();
-            var result = await _api.GetAssync<List<Distrito>>($"/distritos/{id}");
+            var result = await _api.GetAsync<List<Distrito>>($"/distritos/{id}");
 
             if (result.result != null && result.result.Count() > 0) {
                 distrito = result.result.FirstOrDefault();
@@ -81,7 +81,7 @@ namespace IBGEApiClient {
 
         public async Task<Municipio> MunicipioPorIdentificadorAsync(string id) {
             var municipio = new Municipio();
-            var result = await _api.GetAssync<Municipio>($"/municipios/{id}");
+            var result = await _api.GetAsync<Municipio>($"/municipios/{id}");
 
             if (result.result != null) {
                 municipio = result.result;
@@ -92,7 +92,7 @@ namespace IBGEApiClient {
 
         public async Task<Estado> EstadoPorIdentificadorAsync(string id) {
             var municipio = new Estado();
-            var result = await _api.GetAssync<Estado>($"/estados/{id}");
+            var result = await _api.GetAsync<Estado>($"/estados/{id}");
 
             if (result.result != null) {
                 municipio = result.result;
