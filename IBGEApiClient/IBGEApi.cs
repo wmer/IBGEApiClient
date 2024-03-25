@@ -1,6 +1,6 @@
-﻿using IBGEApiClient.Helpers;
+﻿using HelpersLibs.Web;
+using IBGEApiClient.Helpers;
 using IBGEApiClient.Models;
-using ManyHelpers.API;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace IBGEApiClient {
     public class IBGEApi {
-        private readonly CosumingHelper _api;
+        private readonly HttpClientHelper _api;
         private List<Estado> _estados;
         private readonly Dictionary<string, List<Municipio>> _estadoCidade;
         private readonly Dictionary<string, List<Distrito>> _cidadeeDistrito;
 
         public IBGEApi() {
-            _api = new CosumingHelper("https://servicodados.ibge.gov.br/api/v1/localidades")
+            _api = new HttpClientHelper("https://servicodados.ibge.gov.br/api/v1/localidades")
                                     .AddcontentType();
             _estadoCidade = new Dictionary<string, List<Municipio>>();
             _cidadeeDistrito = new Dictionary<string, List<Distrito>>();
