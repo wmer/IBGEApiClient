@@ -12,7 +12,7 @@ namespace IBGEApiClient.Helpers {
         private EnumerableRowCollection<DataRow> _base;
 
         public DDDFileHelper(string dddsFileLocation) {
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            ExcelPackage.License.SetNonCommercialOrganization("4C Digital");
             var excelHelper = new ExcelHelper();
             _base = excelHelper.GetDataTableFromExcel(dddsFileLocation).AsEnumerable();
         }
